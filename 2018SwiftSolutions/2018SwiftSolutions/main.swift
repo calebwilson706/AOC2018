@@ -7,5 +7,5 @@
 
 import Foundation
 
-print("Hello, World!")
-
+Day4().part2()
+ 

@@ -25,9 +25,9 @@ object Day3 {
     fun part2() {
         val hypotheses = parseInput()
 
-        println(hypotheses.filter { oneToCheck ->
-            hypotheses.count { oneToCheck.doesCrossOver(it) && it != oneToCheck } == 0
-        }.first().id)
+        println(hypotheses.first { oneToCheck ->
+            !hypotheses.any { oneToCheck.doesCrossOver(it) && it != oneToCheck }
+        }.id)
     }
 
     private fun getMapOfPointsToPatternIdsOnPoint(): MutableMap<Pair<Int, Int>, MutableSet<Int>> {
