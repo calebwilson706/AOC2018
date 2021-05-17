@@ -16,38 +16,26 @@ class Day4 : PuzzleClass {
     
     func part1() {
         let lazyGuard = getLaziestGuard()
-        let commonMinute = getMostFrequentMinuteAndFrequency(guardNumber: lazyGuard)
+        let commonMinute = getMostFrequentMinuteAndFrequency(for: lazyGuard)
         print(lazyGuard*commonMinute.value)
     }
     
     func part2() {
-        let guardToCommonMinutePairMap = getListOfGuards().reduce([Int : (value : Int, count : Int)]()) { acc, next in
-            var workingMap = acc
-            workingMap[next] = getMostFrequentMinuteAndFrequency(guardNumber: next)
-            return workingMap
+        let linesForEachGuard = getLinesInvolvingEachGuard()
+        let guardToCommonMinutePairMap = linesForEachGuard.map {
+            (key: $0.key, value: getMostFrequentMinuteAndFrequency(fromLines: $0.value))
         }
         let guardToUse = guardToCommonMinutePairMap.max { $0.value.count < $1.value.count }!
         print(guardToUse.key*guardToUse.value.value)
     }
     
-
-    
-    private func getListOfGuards() -> Set<Int> {
-        var guards = Set<Int>()
-        
-        getInputStringsInOrder().forEach {
-            let whatWouldBeGuard = $0.components(separatedBy: " ")[3]
-            if whatWouldBeGuard.contains("#") {
-                guards.insert(Int(whatWouldBeGuard.dropFirst())!)
-            }
-        }
-        
-        return guards
+    private func getMostFrequentMinuteAndFrequency(for guardNumber : Int) -> (value : Int, count : Int) {
+        let lines = getLinesOfActionInvolving(guardNumber: guardNumber)
+        return getMostFrequentMinuteAndFrequency(fromLines : lines)
     }
     
-    private func getMostFrequentMinuteAndFrequency(guardNumber : Int) -> (value : Int, count : Int) {
-        let lines = getLinesOfActionInvolving(guardNumber: guardNumber)
-        let timesInPairs = lines.map { String($0.components(separatedBy: " ")[1].dropLast()).toMinutesSinceZero() }.chunked(into: 2)
+    private func getMostFrequentMinuteAndFrequency(fromLines : [String]) -> (value : Int, count : Int) {
+        let timesInPairs = fromLines.map { $0.getTimeInMinutesFromStringInput() }.chunked(into: 2)
         var minutesSleeping = [Int]()
         
         timesInPairs.forEach {
@@ -59,22 +47,26 @@ class Day4 : PuzzleClass {
         return mostFrequent(array: minutesSleeping) ?? (value : -1,count : 0)
     }
     
+    
     private func getLinesOfActionInvolving(guardNumber : Int) -> [String] {
+        return getLinesInvolvingEachGuard()[guardNumber] ?? []
+    }
+    
+    private func getLinesInvolvingEachGuard() -> [Int : [String]] {
         let stringLines = getInputStringsInOrder()
-        var isGuardTheActiveOne = false
-        var lines = [String]()
+        var activeGuard = 0
+        var result = [Int : [String]]()
         
         stringLines.forEach {
-            if $0.contains("#\(guardNumber)") {
-                isGuardTheActiveOne = true
-            } else if ($0.contains("#")) {
-                isGuardTheActiveOne = false
-            } else if isGuardTheActiveOne {
-                lines.append($0)
+            if $0.isInstructionGuardStartingShift() {
+                activeGuard = $0.getGuardNumberFromShiftStartingString()
+            } else {
+                let existingList = result[activeGuard] ?? []
+                result[activeGuard] = existingList + [$0]
             }
         }
-        
-        return lines
+
+        return result
     }
     
     private func getLaziestGuard() -> Int {
@@ -137,7 +129,7 @@ private extension String {
     }
     
     func getGuardAction() -> GuardActions {
-        if self.contains("#") {
+        if self.isInstructionGuardStartingShift() {
             let guardNumber = Int(self.filter { $0.isNumber })!
             return .beginsShift(guardNumber: guardNumber)
         }
@@ -151,6 +143,19 @@ private extension String {
         
         return hours*60 + minutes
     }
+    
+    func getGuardNumberFromShiftStartingString() -> Int {
+        Int(self.components(separatedBy: " ")[3].dropFirst())!
+    }
+    
+    func getTimeInMinutesFromStringInput() -> Int {
+        String(self.components(separatedBy: " ")[1].dropLast()).toMinutesSinceZero()
+    }
+    
+    func isInstructionGuardStartingShift() -> Bool {
+        self.contains("#")
+    }
+    
 }
 
 extension Date {
