@@ -1,15 +1,12 @@
 module Day2 where
 
 import Data.List
-import qualified Data.IntSet as Set
 
+import qualified Data.IntSet as Set
+import Helpers
 day2FilePath = "/Users/calebjw/Documents/Developer/AdventOfCode/2018/Inputs/Day2Input.txt"
 
-indices :: [a] -> [Int]
-indices list = [0 .. length list - 1]
 
-boolToInt :: Bool -> Int
-boolToInt boolean = if boolean then 1 else 0
 
 getListOfCharacterCounts :: String -> Set.IntSet
 getListOfCharacterCounts string = Set.fromList $ map length $ group $ sort string

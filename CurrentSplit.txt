@@ -2,4 +2,4 @@ Kotlin -> 3
 
 Swift -> 4
 
-Haskell -> 1, 2
+Haskell -> 1, 2, 5

@@ -1,14 +1,9 @@
 module Day1 where
 
 import qualified Data.IntSet as Set
+import Helpers
 
 day1FilePath = "/Users/calebjw/Documents/Developer/AdventOfCode/2018/Inputs/Day1Input.txt"
-
-getIntegerListFromStringList :: [String] -> [Int]
-getIntegerListFromStringList = map read
-
-getCircularIndex :: [a] -> Int -> Int
-getCircularIndex list index = rem index (length list)
 
 part1 :: [String] -> IO()
 part1 inputLines = print $ sum $ getIntegerListFromStringList inputLines
