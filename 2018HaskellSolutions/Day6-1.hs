@@ -2,7 +2,7 @@ module Day6 where
 
 import Data.Char
 
-import Helpers 
+import Helpers
 
 import Data.List
 
@@ -43,10 +43,28 @@ getAllPoints maxX maxY = [(x,y) | x <- [0 .. maxX], y <- [0 .. maxY]]
 findTheListOfClosetsPoints :: [(Char, (Int, Int))] -> [Char]
 findTheListOfClosetsPoints importantPoints = map (`getClosestPointID` importantPoints) (getAllPoints 500 500)
 
+isPointWithinRangeOfList :: ((Int, Int),Int,Int,Int,[(Int, Int)],Int) -> Bool
+isPointWithinRangeOfList (pointToCompare,maxRange,currentTotal,currentIndex,listOfPoints,listLength) = newTotal < maxRange && answer
+    where newTotal = currentTotal + manhattanDistanceBetween pointToCompare (listOfPoints!!currentIndex)
+          wasFinalItem = currentIndex == listLength - 1
+          answer
+            | wasFinalItem = True
+            | otherwise = isPointWithinRangeOfList(pointToCompare,maxRange,newTotal,currentIndex + 1,listOfPoints,listLength)
+
+test :: [Char] -> Bool
+test stringInput = isPointWithinRangeOfList((200,200),10000,0,0,points, length points)
+    where points = map snd $ getInputCoordinatesFromString stringInput
+
 part1 :: String -> IO()
 part1 input = print $ sort $ getListOfImportantPointCounts $ findTheListOfClosetsPoints $ getInputCoordinatesFromString input
 --using multiple ranges I manually found the highest one that didnt change
 
+
+
+part2 :: String -> IO()
+part2 input = print $ foldl (\total currentPoint -> total + if isPointWithinRangeOfList(currentPoint,10000,0,0,points, length points) then 1 else 0) 0 (getAllPoints 340 340)
+     where points = map snd $ getInputCoordinatesFromString input
+
 main :: IO()
 main = do inputText <- readFile day6FilePath
-          part1 inputText
+          part2 inputText

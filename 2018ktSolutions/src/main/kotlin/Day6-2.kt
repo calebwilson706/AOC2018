@@ -12,12 +12,17 @@ object Day6 {
         }
     }
 
+    fun test() {
+        print(Pair(200,200).isTotalDistanceInRegion(10000, getInputPoints()))
+    }
+
+
     fun part2() {
         var sizeOfRegion = 0
         val pointsToCheck = getInputPoints()
 
-        for (x in 0 until 400) {
-            for (y in 0 until 400) {
+        for (x in 0 until 340) {
+            for (y in 0 until 340) {
                 if (Pair(x,y).isTotalDistanceInRegion(10000,pointsToCheck)) sizeOfRegion ++
             }
         }

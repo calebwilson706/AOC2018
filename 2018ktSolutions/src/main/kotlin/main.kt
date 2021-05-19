@@ -2,5 +2,5 @@ import kotlin.system.measureTimeMillis
 
 
 fun main(args: Array<String>) {
-    Day6.part2()
+    Day6.test()
 }
