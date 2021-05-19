@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import PuzzleBox
 
-Day4().part2()
- 
+let today = Day7()
+
+timeTest(call: today.part1, num: 1)
+timeTest(call: today.part2, num: 2)

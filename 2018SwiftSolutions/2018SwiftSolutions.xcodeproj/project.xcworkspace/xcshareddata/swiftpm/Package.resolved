@@ -5,9 +5,9 @@
         "package": "PuzzleBox",
         "repositoryURL": "https://github.com/calebwilson706/puzzle-box-SP",
         "state": {
-          "branch": null,
-          "revision": "663b1c3cabc8077743db7ffdb782eaa039fd8895",
-          "version": "1.1.4"
+          "branch": "main",
+          "revision": "158c128e1a915217ece76c21d9db6613e79a6cd4",
+          "version": null
         }
       }
     ]
