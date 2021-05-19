@@ -27,9 +27,7 @@ class Day7 {
         var order = ""
 
         while !thoseToCarryOut.isEmpty {
-            let currentProgram = thoseToCarryOut.first!.value
-            order += "\(currentProgram)"
-            thoseToCarryOut.remove(at: 0)
+            order += "\(thoseToCarryOut.removeFirst()!.value)"
             getNextToCarryOut(currentOrder: order, prerequisites: mapOfPrerequisites).forEach { thoseToCarryOut.appendWhenSortedList(value: $0) }
         }
 
@@ -54,8 +52,7 @@ class Day7 {
                     }
                 }
                 if !thoseToCarryOut.isEmpty && elfWorkersTasks[elfID] == nil {
-                    let elfNewTask = ProgramCompletionStatus(program: thoseToCarryOut.first!.value)
-                    thoseToCarryOut.remove(at: 0)
+                    let elfNewTask = ProgramCompletionStatus(program: thoseToCarryOut.removeFirst()!.value)
                     elfWorkersTasks[elfID] = elfNewTask
                 }
             }
