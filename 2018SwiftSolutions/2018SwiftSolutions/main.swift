@@ -8,7 +8,7 @@
 import Foundation
 import PuzzleBox
 
-let today = Day7()
+let today = Day9()
 
-timeTest(call: today.part1, num: 1)
-timeTest(call: today.part2, num: 2)
+today.part1()
+
