@@ -10,5 +10,4 @@ import PuzzleBox
 
 let today = Day9()
 
-today.part1()
-
+today.part2()

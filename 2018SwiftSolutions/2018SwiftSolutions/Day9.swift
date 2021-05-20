@@ -22,22 +22,20 @@ class Day9 {
     }
     
     func solution(marbleFactor : Int) {
-        var circle = [0,1]
+        var circle = DoublyLinkedList([2,1,0])
         var points = generateEmptyMapOfInts(maxKey: amountOfPlayers)
-        var currentIndex = 1
         var currentElf = 0
         
-        for marble in 2...(finalMarble*marbleFactor) {
+        for marble in 3...(finalMarble*marbleFactor) {
             currentElf = getNextElf(current: currentElf)
             
             if marble.isImportantMarble() {
-                currentIndex = getIndexOfMarbleToRemoveAfterImportantIsFound(currentIndex: currentIndex, currentSize: circle.count)
-                let removedValue = circle.remove(at: currentIndex)
-
+                circle.rotateRight(n: 7)
+                let removedValue = circle.pop()!
                 points[currentElf]! += removedValue + marble
             } else {
-                currentIndex = getNextIndexOfMarble(currentIndex: currentIndex, currentSize: circle.count)
-                circle.insert(marble, at: currentIndex)
+                circle.rotateLeft(n: 2)
+                circle.push(marble)
             }
         }
         
