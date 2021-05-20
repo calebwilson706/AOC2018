@@ -1,4 +1,4 @@
-Kotlin -> 3, 6.2
+Kotlin -> 3, 6.2, 8
 
 Swift -> 4, 7
 
