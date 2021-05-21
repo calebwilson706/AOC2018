@@ -40,17 +40,6 @@ class Day9 {
         }
         
         print(points.values.max()!)
-       
-    }
-    
-    func getNextIndexOfMarble(currentIndex : Int, currentSize : Int) -> Int {
-        let desiredIndex = currentIndex + 2
-        return (desiredIndex == currentSize) ? currentSize : ((desiredIndex >= currentSize) ? (desiredIndex - currentSize) : desiredIndex)
-    }
-    
-    func getIndexOfMarbleToRemoveAfterImportantIsFound(currentIndex : Int,currentSize : Int) -> Int {
-        let desiredIndex = (currentIndex - 7)
-        return (desiredIndex >= 0) ? desiredIndex : (currentSize + desiredIndex)
     }
     
     func getNextElf(current : Int) -> Int {
