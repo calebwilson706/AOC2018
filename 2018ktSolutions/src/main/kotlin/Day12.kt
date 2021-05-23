@@ -26,10 +26,10 @@ object Day12 {
     }
 
     private fun carryOutOneGeneration(previousPlants : Map<Int,Char>, combinations : Map<String, Char>) : Map<Int, Char> {
-        val previousPlantIndexList = previousPlants.keys.sorted()
+        val previousPlantIndexList = previousPlants.keys
         val newPlants = mutableMapOf<Int, Char>()
 
-        (previousPlantIndexList.first() - 2 .. previousPlantIndexList.last() + 2).forEach {
+        (previousPlantIndexList.minOrNull()!! - 2 .. previousPlantIndexList.maxOrNull()!! + 2).forEach {
             val stringForCurrent = previousPlants.formString(it)
             newPlants[it] = combinations[stringForCurrent] ?: '.'
         }
