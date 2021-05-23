@@ -15,3 +15,12 @@ boolToInt boolean = if boolean then 1 else 0
 replaceValue :: Int -> a -> [a] -> [a]
 replaceValue indexToReplace newValue originalList = header ++ [newValue] ++ drop 1 footer
     where (header, footer) = splitAt indexToReplace originalList
+
+getAllPoints :: (Int,Int) -> (Int,Int) -> [(Int, Int)]
+getAllPoints (minX,minY) (maxX, maxY) = [(x,y) | x <- [minX .. maxX], y <- [minY .. maxY]]
+
+chunks :: Int -> [a] -> [[a]]
+chunks _ [] = []
+chunks n xs =
+    let (ys, zs) = splitAt n xs
+    in  ys : chunks n zs

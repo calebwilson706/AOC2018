@@ -37,11 +37,8 @@ getClosestPoint myPoint = fst . foldl step (decoyPoint, maxBound::Int)
 getClosestPointID :: (Int, Int) -> [(Char, (Int, Int))] -> Char
 getClosestPointID x xs = fst $ getClosestPoint x xs
 
-getAllPoints :: Int -> Int -> [(Int, Int)]
-getAllPoints maxX maxY = [(x,y) | x <- [0 .. maxX], y <- [0 .. maxY]]
-
 findTheListOfClosetsPoints :: [(Char, (Int, Int))] -> [Char]
-findTheListOfClosetsPoints importantPoints = map (`getClosestPointID` importantPoints) (getAllPoints 500 500)
+findTheListOfClosetsPoints importantPoints = map (`getClosestPointID` importantPoints) (getAllPoints (0, 0) (500,500))
 
 isPointWithinRangeOfList :: ((Int, Int),Int,Int,Int,[(Int, Int)],Int) -> Bool
 isPointWithinRangeOfList (pointToCompare,maxRange,currentTotal,currentIndex,listOfPoints,listLength) = newTotal < maxRange && answer
@@ -62,7 +59,7 @@ part1 input = print $ sort $ getListOfImportantPointCounts $ findTheListOfCloset
 
 
 part2 :: String -> IO()
-part2 input = print $ foldl (\total currentPoint -> total + if isPointWithinRangeOfList(currentPoint,10000,0,0,points, length points) then 1 else 0) 0 (getAllPoints 340 340)
+part2 input = print $ foldl (\total currentPoint -> total + if isPointWithinRangeOfList(currentPoint,10000,0,0,points, length points) then 1 else 0) 0 (getAllPoints (0, 0) (340, 340))
      where points = map snd $ getInputCoordinatesFromString input
 
 main :: IO()
