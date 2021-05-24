@@ -1,5 +1,7 @@
 module Helpers where
 
+import Data.Char
+
 getIntegerListFromStringList :: [String] -> [Int]
 getIntegerListFromStringList = map read
 
@@ -24,3 +26,6 @@ chunks _ [] = []
 chunks n xs =
     let (ys, zs) = splitAt n xs
     in  ys : chunks n zs
+
+digits :: Int -> [Int]
+digits = map digitToInt . show
