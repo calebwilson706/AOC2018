@@ -10,6 +10,7 @@ import Foundation
 
 class Day14 {
     let puzzleInput = 880751
+    let puzzleDigits = [8,8,0,7,5,1]
     
     func part1() {
         print(getRecipeList(completionPredicate: part1Predicate).dropFirst(puzzleInput))
@@ -48,7 +49,7 @@ class Day14 {
         }
         
         mutating func updateRecipes(newValues : [Int]) {
-            newValues.forEach { recipes.append($0) }
+            recipes.append(contentsOf: newValues)
         }
         
         subscript(index : Int) -> Int {
@@ -70,19 +71,18 @@ class Day14 {
     
     func part2Predicate(recipes : RecipeList) -> Bool {
         let sequenceToCheck = recipes.recipes.suffix(7)
-        let puzzleDigits = puzzleInput.digits
-        
         return Array(sequenceToCheck.dropFirst()) == puzzleDigits || Array(sequenceToCheck.dropLast()) == puzzleDigits
     }
     
     func getNewScoresToAdd(elf1Value : Int, elf2Value : Int) -> [Int] {
-        (elf1Value + elf2Value).digits
+        (elf1Value + elf2Value).unitsAndTens
     }
 }
 
 extension Int {
-    var digits : [Int] {
-        String(self).compactMap { $0.wholeNumberValue }
+    var unitsAndTens : [Int] {
+        let tens = self / 10
+        return (tens != 0 ? [tens] : []) + [self % 10]
     }
 }
 
