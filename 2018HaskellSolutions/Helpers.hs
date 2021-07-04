@@ -21,6 +21,9 @@ replaceValue indexToReplace newValue originalList = header ++ [newValue] ++ drop
 getAllPoints :: (Int,Int) -> (Int,Int) -> [(Int, Int)]
 getAllPoints (minX,minY) (maxX, maxY) = [(x,y) | x <- [minX .. maxX], y <- [minY .. maxY]]
 
+count :: [t1] -> (t1 -> Bool) -> Int
+count list predicate = foldl (\acc next -> acc + if predicate next then 1 else 0) 0 list
+
 chunks :: Int -> [a] -> [[a]]
 chunks _ [] = []
 chunks n xs =
