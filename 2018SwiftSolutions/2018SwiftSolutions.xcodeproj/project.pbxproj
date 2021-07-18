@@ -10,6 +10,7 @@
 		AB0B52E12651AD720087678E /* Day4.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0B52E02651AD720087678E /* Day4.swift */; };
 		AB26420C265417390074120A /* Day7.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB26420B265417390074120A /* Day7.swift */; };
 		AB264214265431B50074120A /* PuzzleBox in Frameworks */ = {isa = PBXBuildFile; productRef = AB264213265431B50074120A /* PuzzleBox */; };
+		AB34929C26A451F1003A2E7B /* Day19Part2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB34929B26A451F1003A2E7B /* Day19Part2.swift */; };
 		AB5C1020265AE5F000F7D9A7 /* Day13.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5C101F265AE5F000F7D9A7 /* Day13.swift */; };
 		AB5E22352650895D00414BF0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E22342650895D00414BF0 /* main.swift */; };
 		AB65258F265C03170039649A /* Day14.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65258E265C03170039649A /* Day14.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		AB0B52E02651AD720087678E /* Day4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day4.swift; sourceTree = "<group>"; };
 		AB26420B265417390074120A /* Day7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day7.swift; sourceTree = "<group>"; };
+		AB34929B26A451F1003A2E7B /* Day19Part2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day19Part2.swift; sourceTree = "<group>"; };
 		AB5C101F265AE5F000F7D9A7 /* Day13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day13.swift; sourceTree = "<group>"; };
 		AB5E22312650895D00414BF0 /* 2018SwiftSolutions */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 2018SwiftSolutions; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5E22342650895D00414BF0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				AB65258E265C03170039649A /* Day14.swift */,
 				ABBB15A9265D75CE00218369 /* Day15.swift */,
 				AB9DAF842693003500ABF5EB /* Day17.swift */,
+				AB34929B26A451F1003A2E7B /* Day19Part2.swift */,
 			);
 			path = 2018SwiftSolutions;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				AB5E22352650895D00414BF0 /* main.swift in Sources */,
 				AB26420C265417390074120A /* Day7.swift in Sources */,
 				AB0B52E12651AD720087678E /* Day4.swift in Sources */,
+				AB34929C26A451F1003A2E7B /* Day19Part2.swift in Sources */,
 				AB5C1020265AE5F000F7D9A7 /* Day13.swift in Sources */,
 				AB9DAF852693003500ABF5EB /* Day17.swift in Sources */,
 				AB719AFF2656C66D00FF976C /* Day9.swift in Sources */,

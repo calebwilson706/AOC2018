@@ -9,6 +9,7 @@ day16Part1FilePath = "/Users/calebjw/Documents/Developer/AdventOfCode/2018/Input
 day16Part2FilePath = "/Users/calebjw/Documents/Developer/AdventOfCode/2018/Inputs/Day16InputPart2.txt"
 
 data OperationArguments = OperationArguments Int Int Int
+    deriving (Show)
 data OperationFunctionArguments = OperationFunctionArguments OperationArguments [Int]
 data Instruction =
     Addr | Addi | Mulr | Muli | Banr | Bani | Borr | Bori | Setr | Seti | Gtrr | Gtri | Gtir | Eqrr | Eqri | Eqir
@@ -36,7 +37,7 @@ parseRegisterStatusString :: [Char] -> [Int]
 parseRegisterStatusString = parseSpacedIntegers . filter (\c -> isSpace c || isDigit c)
 
 registerRange :: [Int]
-registerRange = [0..3]
+registerRange = [0..5]
 
 isValidRegister :: Int -> Bool
 isValidRegister = flip elem registerRange
